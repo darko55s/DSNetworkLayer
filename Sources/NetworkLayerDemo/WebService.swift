@@ -25,7 +25,7 @@ public class WebService: WebServiceProtocol {
 
     let apiQueue = DispatchQueue(label: "NetworkLayerQueue", qos: .default, attributes: .concurrent)
 
-    init(urlSession: URLSession = URLSession(configuration: URLSessionConfiguration.default), decoder: JSONDecoder = JSONDecoder()) {
+    public init(urlSession: URLSession = URLSession(configuration: URLSessionConfiguration.default), decoder: JSONDecoder = JSONDecoder()) {
         self.urlSession = urlSession
         self.jsonDecoder = decoder
     }
