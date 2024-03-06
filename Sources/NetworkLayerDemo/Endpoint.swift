@@ -12,7 +12,7 @@ public protocol Endpoint {
     var httpMethod: String { get }
     var httpHeaders: [String: String]? { get }
     var queryItems: [URLQueryItem]? { get }
-    var body: [String: Any]? { get }
+    var body: Data? { get }
     var scheme: String { get }
     var host: String { get }
 }
@@ -38,10 +38,9 @@ public extension Endpoint {
             }
         }
 
-        if let httpBody = body,
-           let jsonData = try? JSONSerialization.data(withJSONObject: httpBody) {
+        if let httpBody = body {
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-            request.httpBody = jsonData
+            request.httpBody = httpBody
         }
         return request
     }
