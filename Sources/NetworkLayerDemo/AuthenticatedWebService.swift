@@ -51,24 +51,9 @@ public final class AuthenticatedWebService: WebService {
             .map { tuple -> Data in
                 return tuple.data
             }
-            .decode(type: APIResponse<T, E>.self, decoder: JSONDecoder())
+            .decode(type: T.self, decoder: JSONDecoder())
             .mapError { error -> Error in
                 return NetworkError.parserError(error: error)
-            }
-            .tryMap { response in
-                // In the case of error, "data" will be empty so we need to check for errors first
-                if response.errors?.isEmpty == false,
-                   let error = response.errors?.first,
-                   let code = error.code {
-                    throw code
-                }
-                // The server always sends a dictionary with data if there are no errors, although
-                // many times it is empty so EmptyResponse is most likely.
-                if let data = response.data {
-                    return data
-                }
-                assertionFailure("Network request is not sending error or data. Reach out to server to fix")
-                throw MissingValueError.shared
             }
             .handleError { [weak self] error in
                 self?.networkLogger.logError(error, for: request)
