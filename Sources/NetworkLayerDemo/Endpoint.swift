@@ -19,7 +19,7 @@ public protocol Endpoint {
 
 typealias AuthenticatedEndpoint = Endpoint & Authenticated
 
-extension Endpoint {
+public extension Endpoint {
     func request(forEndpoint endpoint: String) -> URLRequest? {
         var urlComponents = URLComponents()
         urlComponents.scheme = scheme
