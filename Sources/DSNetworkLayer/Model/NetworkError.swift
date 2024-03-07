@@ -1,7 +1,4 @@
 //
-//  File.swift
-//  
-//
 //  Created by Darko Spasovski on 6.3.24.
 //
 

@@ -4,20 +4,20 @@
 import PackageDescription
 
 let package = Package(
-    name: "NetworkLayerDemo",
+    name: "DSNetworkLayer",
     platforms: [
         .iOS(.v13)
     ],
     products: [
         .library(
-            name: "NetworkLayerDemo",
-            targets: ["NetworkLayerDemo"]),
+            name: "DSNetworkLayer",
+            targets: ["DSNetworkLayer"]),
     ],
     targets: [
         .target(
-            name: "NetworkLayerDemo"),
+            name: "DSNetworkLayer"),
         .testTarget(
-            name: "NetworkLayerDemoTests",
-            dependencies: ["NetworkLayerDemo"]),
+            name: "DSNetworkLayerTests",
+            dependencies: ["DSNetworkLayer"]),
     ]
 )

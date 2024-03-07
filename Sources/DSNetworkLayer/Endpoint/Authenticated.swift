@@ -1,7 +1,4 @@
 //
-//  File.swift
-//  
-//
 //  Created by Darko Spasovski on 6.3.24.
 //
 
@@ -12,7 +9,7 @@ public protocol Authenticated {}
 public extension Authenticated {
     func addAuthHeaders(_ request: URLRequest, for userToken: String) -> URLRequest {
         var newRequest = request
-        newRequest.setValue("Bearer \(userToken)", forHTTPHeaderField: "Authorization")
+        newRequest.setValue(userToken, forHTTPHeaderField: "Authorization")
         return newRequest
     }
 }

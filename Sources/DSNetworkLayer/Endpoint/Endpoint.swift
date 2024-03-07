@@ -1,7 +1,4 @@
 //
-//  File.swift
-//  
-//
 //  Created by Darko Spasovski on 6.3.24.
 //
 
@@ -17,7 +14,7 @@ public protocol Endpoint {
     var host: String { get }
 }
 
-typealias AuthenticatedEndpoint = Endpoint & Authenticated
+public typealias AuthenticatedEndpoint = Endpoint & Authenticated
 
 public extension Endpoint {
     func request(forEndpoint endpoint: String) -> URLRequest? {

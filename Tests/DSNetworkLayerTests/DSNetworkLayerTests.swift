@@ -1,7 +1,7 @@
 import XCTest
-@testable import NetworkLayerDemo
+@testable import DSNetworkLayer
 
-final class NetworkLayerDemoTests: XCTestCase {
+final class DSNetworkLayerTests: XCTestCase {
     func testExample() throws {
         // XCTest Documentation
         // https://developer.apple.com/documentation/xctest

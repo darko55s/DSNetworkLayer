@@ -1,7 +1,4 @@
 //
-//  File.swift
-//  
-//
 //  Created by Darko Spasovski on 6.3.24.
 //
 
@@ -9,13 +6,7 @@ import Combine
 import Foundation
 
 public protocol WebServiceProtocol {
-//    func publisher<T: Decodable>(for endpoint: Endpoint, forceLog: Bool) -> AnyPublisher<T, Error>
-    func publisher<T: Codable, E: Codable & Error>(
-        endpoint: Endpoint,
-        responseDataType: T.Type,
-        errorCodesType: E.Type,
-        forceLog: Bool
-    ) -> AnyPublisher<T, Error>
+    func publisher<T: Decodable>(for endpoint: Endpoint, forceLog: Bool) -> AnyPublisher<T, Error>
 }
 
 public class WebService: WebServiceProtocol {
@@ -30,8 +21,8 @@ public class WebService: WebServiceProtocol {
         self.jsonDecoder = decoder
     }
    
-    public func publisher<T, E>(endpoint: any Endpoint, responseDataType: T.Type, errorCodesType: E.Type, forceLog: Bool) -> AnyPublisher<T, any Error> where T : Codable, E : Codable, E : Error {
-     
+    public func publisher<T: Decodable>(for endpoint: Endpoint, forceLog: Bool) -> AnyPublisher<T, Error> {
+
         guard let request = endpoint.request else {
             return Fail(error: NetworkError.invalidRequest)
                 .eraseToAnyPublisher()

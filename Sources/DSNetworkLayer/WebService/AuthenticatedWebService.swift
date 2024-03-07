@@ -1,7 +1,4 @@
 //
-//  File.swift
-//  
-//
 //  Created by Darko Spasovski on 6.3.24.
 //
 
@@ -20,12 +17,8 @@ public final class AuthenticatedWebService: WebService {
         super.init(urlSession: urlSession, decoder: decoder)
     }
 
-    func publisher<T: Codable, E: Codable & Error>(
-        endpoint: AuthenticatedEndpoint,
-        responseDataType: T.Type,
-        errorCodesType: E.Type,
-        forceLog: Bool = false
-    ) -> AnyPublisher<T, Error> {
+    public func publisher<T: Decodable>(for endpoint: AuthenticatedEndpoint, forceLog: Bool) -> AnyPublisher<T, Error> {
+
         guard let request = endpoint.request else {
             return Fail(error: NetworkError.invalidRequest)
                 .eraseToAnyPublisher()
